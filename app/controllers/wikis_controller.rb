@@ -1,10 +1,11 @@
 class WikisController < ApplicationController
   def index
     @wikis = Wiki.all
+    puts "this is good stuff"
   end
 
   def show
-    @wiki = Wiki.find(wiki_params[:id])
+    @wiki = Wiki.find(params[:id])
   end
 
   def new
@@ -12,7 +13,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new(wiki_params)
+    @wiki = current_user.wikis.new(wiki_params)
     if @wiki.save
       flash[:notice] = "Wiki was saved."
       redirect_to [@wiki]
