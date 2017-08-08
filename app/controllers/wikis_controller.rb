@@ -1,10 +1,11 @@
 class WikisController < ApplicationController
+  before_action :find_id, only: [:show, :edit, :update, :destroy]
+
   def index
     @wikis = Wiki.all
   end
 
   def show
-    @wiki = Wiki.find(params[:id])
   end
 
   def new
@@ -23,14 +24,10 @@ class WikisController < ApplicationController
   end
 
   def edit
-    @wiki = Wiki.find(params[:id])
   end
 
   def update
-    # @wiki = current_user.wikis.new(wiki_params)
-    @wiki = Wiki.find(params[:id])
-    @wiki.assign_attributes(wiki_params)
-    if @wiki.save
+    if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki was updated"
       redirect_to [@wiki]
     else
@@ -40,7 +37,6 @@ class WikisController < ApplicationController
   end
 
   def destroy
-    @wiki = Wiki.find(params[:id])
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title} \" was deleted."
       redirect_to action: :index
@@ -51,7 +47,12 @@ class WikisController < ApplicationController
   end
 
   private
+
   def wiki_params
     params.require(:wiki).permit(:title, :body, :private)
+  end
+
+  def find_id
+    @wiki = Wiki.find(params[:id])
   end
 end
