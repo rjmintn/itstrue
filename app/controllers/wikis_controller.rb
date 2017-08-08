@@ -27,7 +27,7 @@ class WikisController < ApplicationController
   end
 
   def update
-    # @wiki = current_user.wikis.update(wiki_params)
+    # @wiki = current_user.wikis.new(wiki_params)
     @wiki = Wiki.find(params[:id])
     @wiki.assign_attributes(wiki_params)
     if @wiki.save
