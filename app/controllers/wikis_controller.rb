@@ -1,6 +1,7 @@
 class WikisController < ApplicationController
   before_action :find_id, only: [:show, :edit, :update, :destroy]
-
+  # before_action :authorize @wiki
+  
   def index
     @wikis = Wiki.all
   end
