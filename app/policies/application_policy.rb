@@ -7,12 +7,14 @@ class ApplicationPolicy
   end
 
   def index?
-    current_user?
+    false
+    # current_user?
   end
 
   def show?
     #scope.where(:id => wiki.id).exists?
-    current_user?
+    # current_user?
+    # false
   end
 
   def create?
@@ -24,7 +26,7 @@ class ApplicationPolicy
   end
 
   def update?
-    user.present?
+    # user.present?
   end
 
   def edit?

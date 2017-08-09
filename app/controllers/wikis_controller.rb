@@ -1,12 +1,13 @@
 class WikisController < ApplicationController
   before_action :find_id, only: [:show, :edit, :update, :destroy]
   # before_action :authorize @wiki
-  
+
   def index
     @wikis = Wiki.all
   end
 
   def show
+    authorize @wiki
   end
 
   def new
@@ -25,6 +26,7 @@ class WikisController < ApplicationController
   end
 
   def edit
+    authorize @wiki
   end
 
   def update
@@ -38,6 +40,7 @@ class WikisController < ApplicationController
   end
 
   def destroy
+    authorize @wiki
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title} \" was deleted."
       redirect_to action: :index
