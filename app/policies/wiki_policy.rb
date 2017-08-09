@@ -1,12 +1,15 @@
-class PostPolicy < ApplicationPolicy
+class WikiPolicy < ApplicationPolicy
   attr_reader :user, :wiki
 
-  def initialize(user, wiki)
-    @user = user
-    @wiki = wiki
+  def show?
+    user.present?
   end
-  
-  def update?
-    user.admin? or not record.published?
+
+  def edit?
+    user.present? && (user == wiki.user || user.admin?)
+  end
+
+  def destroy?
+    user.present? && (user == wiki.user || user.admin?)
   end
 end
