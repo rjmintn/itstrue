@@ -16,8 +16,4 @@ class ApplicationController < ActionController::Base
       redirect_to(new_user_registration_path)
     end
   end
-
-  def downgrade
-    current_user.update_attribute(:role, 'standard')
-  end
 end

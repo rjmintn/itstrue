@@ -12,14 +12,14 @@ class ChargesController < ApplicationController
       currency: 'usd'
     )
 
+    # If stripe transaction completes, charge is returned
+    # charge.paid is a boolean on success of payment processing
     current_user.update_attribute(:role, "premium") if charge.paid?
 
-    puts current_user.role
+    #puts current_user.role
 
       flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again. "
       redirect_to new_charge_path(current_user)
-
-      #Stripe::Carderror! {self.role = :premium}
 
     rescue Stripe::CardError => e
       flash[:alert] = e.message
@@ -34,7 +34,11 @@ class ChargesController < ApplicationController
     }
   end
 
-  def downgrade
-    current_user.update_attribute(:role, "standard")
+  # downgrades user account when hitting this page.
+  # not a great solution since someone can just type
+  # the page link and downgrade the account
+  def edit
+    user = current_user
+    user.update_attribute(:role, "standard")
   end
 end

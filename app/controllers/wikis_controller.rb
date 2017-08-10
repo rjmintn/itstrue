@@ -11,10 +11,12 @@ class WikisController < ApplicationController
   end
 
   def new
+    #authorize @wiki
     @wiki = Wiki.new
   end
 
   def create
+
     @wiki = current_user.wikis.new(wiki_params)
     if @wiki.save
       flash[:notice] = "Wiki was saved."

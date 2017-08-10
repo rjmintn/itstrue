@@ -41,7 +41,9 @@
   <%= link_to "Upgrade", new_charge_path, class: 'btn btn-success' %>
 <% elsif current_user.role == "premium" %>
   <h3>Downgrade to standard</h3>
-  <%=button_to "Downgrade", user_registration_path %>
+  <!-- I tried using a button to and just run the downgrade code. no luck
+        So I went with a link to a page, which then runs the code -->
+  <%= link_to "Downgrade", edit_charge_path(current_user), class: 'btn btn-danger' %>
   <!-- Try linking to a new page that runs the code on load  -->
 <% end %>
 

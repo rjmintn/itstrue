@@ -9,7 +9,4 @@ class User < ActiveRecord::Base
 
   enum role: [:standard, :premium, :admin]
 
-  # def downgrade
-  #   self.update_attribute(:role, "standard")
-  # end
 end
