@@ -12,4 +12,13 @@ class WikiPolicy < ApplicationPolicy
   def destroy?
     user.present? && (user == wiki.user || user.admin?)
   end
+
+  def new?
+    if wiki.private?
+      user.admin? || user.premium?
+    else
+      user.present?
+    end
+  end
+
 end
