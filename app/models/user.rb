@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
-         
+
   enum role: [:standard, :premium, :admin]
+
+  # def downgrade
+  #   self.update_attribute(:role, "standard")
+  # end
 end
