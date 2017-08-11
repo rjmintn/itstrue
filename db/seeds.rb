@@ -16,4 +16,12 @@ users = User.all
     user_id: users.sample.id
   )
   wiki.update_attributes(:created_at => Faker::Date.between(12.months.ago, 6.months.ago),  :updated_at => Faker::Date.between(5.months.ago, Date.today))
+
+  wiki = Wiki.create!(
+    title: "#{count.to_s} " + Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraph(2,false,4),
+    private: true,
+    user_id: 1
+  )
+  wiki.update_attributes(:created_at => Faker::Date.between(12.months.ago, 6.months.ago),  :updated_at => Faker::Date.between(5.months.ago, Date.today))
 end

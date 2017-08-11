@@ -40,5 +40,6 @@ class ChargesController < ApplicationController
   def edit
     user = current_user
     user.update_attribute(:role, "standard")
+    
   end
 end

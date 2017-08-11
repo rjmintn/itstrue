@@ -43,7 +43,7 @@
   <h3>Downgrade to standard</h3>
   <!-- I tried using a button to and just run the downgrade code. no luck
         So I went with a link to a page, which then runs the code -->
-  <%= link_to "Downgrade", edit_charge_path(current_user), class: 'btn btn-danger' %>
+  <%= link_to "Downgrade", edit_charge_path(current_user), class: 'btn btn-danger', data: { confirm: "Are you sure? All your private Wiki will become public. Are you REALLY sure you want to do that?" } %>
   <!-- Try linking to a new page that runs the code on load  -->
 <% end %>
 
