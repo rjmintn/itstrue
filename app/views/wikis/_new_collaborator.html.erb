@@ -1,0 +1,11 @@
+<#%= form_for(@wiki.users) do |ff| %>
+  <% @wiki.users.each_with_index do |c| %>
+    <%= f.label c.email %>
+    <small><%= c.email %> </small>
+  <% end %>
+  <@%= ff.label :email %>
+  <@%= ff.email_field @wiki.edit.col_email %>
+  <div class="actions">
+    <#%= ff.submit %>
+  </div>
+<#% end %>

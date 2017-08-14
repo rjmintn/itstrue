@@ -1,14 +1,25 @@
- <h1><%= @wiki.title %></h1>
- <div class="row">
-   <div class="col-md-8">
-     <div class="media">
-       <div class="media-body">
-         <p><%= markdown(@wiki.body) %></p>
-       </div>
-     </div>
-   </div>
-   <div class="col-md-4">
-      <%= link_to "Edit", edit_wiki_path, class: 'btn btn-success' %>
-      <%= link_to "Delete", @wiki, method: :delete, class: 'btn btn-danger' %>
-   </div>
- </div>
+<h1><%= @wiki.title %></h1>
+<div class="row">
+  <div class="col-md-8">
+    <div class="media">
+      <div class="media-body">
+        <p><%= markdown(@wiki.body) %></p>
+      </div>
+      <small>User name : <%= @user.email %> | <%= @wiki.private %></small>
+      <div>
+        <h4>Collaborators</h4>
+        <% @wiki.collaborators.each do |col| %>
+          <small> <%= @wiki.users.find(col.user_id).email %> </br></small>
+        <% end %>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-4">
+    <%= link_to "Edit", edit_wiki_path, class: 'btn btn-success' %>
+    <%= link_to "Delete", @wiki, method: :delete, class: 'btn btn-danger' %>
+    <%= render partial: 'new_collaborator', locals: {collaborator}
+  </div>
+
+</div>

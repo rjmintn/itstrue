@@ -1,13 +1,14 @@
 class User < ActiveRecord::Base
-  has_many :wikis, dependent: :destroy
+  has_many :wikis, dependent: :destroy, through: :collaborators
+  has_many :collaborators
   after_initialize {self.role ||= :standard }
   after_update :check_user_private_wiki
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
+         :recoverable, :rememberable, :trackable
+         # :validatable, :confirmable
 
   enum role: [:standard, :premium, :admin]
 
@@ -19,4 +20,5 @@ class User < ActiveRecord::Base
       end
     end
   end
+
 end

@@ -9,7 +9,7 @@
               <h4 class="media-heading"><%= link_to w.title, w %></h4>
               <small><%=  %></small>
               <small><%= hide_markdown_format(w.body) %></small>
-
+              <small>User name : <%= w.user_id %> | <%= w.private %></small>
           </div>
         </div>
       <% end %>
